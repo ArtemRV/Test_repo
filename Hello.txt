@@ -1,4 +1,8 @@
 Hello, World!
 Test continues
+<<<<<<
 Hello, galaxy!
 Nice to meet you)
+=======
+And finaly
+>>>>>>> 9e9f1fa10438ee0064743aa1bf0baa92456dce97
