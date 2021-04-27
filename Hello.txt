@@ -1,4 +1,3 @@
 Hello, World!
 Test continues
 And 
-Now
