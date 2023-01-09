@@ -13,8 +13,9 @@ jobs:
         run: |
           echo "start"
           echo "${{ job.status }}"
-          echo "${{ github.event.inputs }}"
+          echo "${{ github.event.inputs.* }}"
           echo "::save-state name=state::${{ job.status }}"
+          echo "::set-output name=state::success"
         shell: bash
         
       - name: check
