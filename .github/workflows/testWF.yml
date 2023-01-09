@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: trigger2
-        if: ${{ jobs.test1.outputs.state == 'success' }}
+        if: ${{ github.job.test1.steps.str.outputs.state == 'success' }}
         id: trg
         run: |
           echo "yeah!"
