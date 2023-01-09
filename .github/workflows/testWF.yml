@@ -19,7 +19,7 @@ jobs:
         shell: bash
         
       - name: check
-        if: ${{ steps.str.outputs.state == 'success' }}
+        if: ${{ steps.str.status == 'success' }}
         run: |
           echo "working!"
           echo "${{ job.status }}"
@@ -30,7 +30,7 @@ jobs:
     needs: test1
     steps:
       - name: trigger
-        if: ${{ steps.str.outputs.state == 'success' }}
+        if: ${{ job.test1.steps.str.outputs.state == 'success' }}
         id: trg
         run: |
           echo "yeah!"
