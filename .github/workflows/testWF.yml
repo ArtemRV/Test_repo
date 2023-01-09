@@ -7,15 +7,15 @@ on:
 jobs:
   test1:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.str.outputs.state }}
     steps:
       - name: start
         id: str
         run: |
           echo "start"
           var1="${{ job.status }}"
-          echo "${{ github.event.inputs.* }}"
-          echo "::save-state name=state::$var1"
-          echo "::set-output name=state::success"
+          echo "state=$var1" >> $GITHUB_OUTPUT
         shell: bash
         
       - name: check
@@ -38,10 +38,9 @@ jobs:
     needs: test1
     steps:
       - name: trigger2
-        if: ${{ github.job.test1.steps.str.outputs.state == 'success' }}
+        if: ${{ needs.test1.outputs.output1 == 'success' }}
         id: trg
         run: |
           echo "yeah!"
-          echo "${{ job }}"
         shell: bash
         
