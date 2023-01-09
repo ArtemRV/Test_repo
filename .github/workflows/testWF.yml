@@ -6,7 +6,6 @@ on:
         
 jobs:
   test1:
-    id: tst
     runs-on: ubuntu-latest
     steps:
       - name: start
@@ -38,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: trigger2
-        if: ${{ jobs.tst.steps.str.outputs.state == 'success' }}
+        if: ${{ jobs.test1.steps.str.outputs.state == 'success' }}
         id: trg
         run: |
           echo "yeah!"
