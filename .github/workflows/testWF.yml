@@ -15,7 +15,7 @@ jobs:
           var1="${{ job.status }}"
           echo "${{ github.event.inputs.* }}"
           echo "::save-state name=state::$var1"
-          #echo "::set-output name=state::success"
+          echo "::set-output name=state::success"
         shell: bash
         
       - name: check
