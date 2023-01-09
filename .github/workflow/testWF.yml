@@ -1,0 +1,36 @@
+name: testIfConditions
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      var1:
+        required: false
+        dafault: true
+        type: boolean
+        
+jobs:
+  test1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: start
+        id: str
+        run: |
+          echo "start"
+        shell: bash
+        
+      - name: check
+        if: ${{ steps.str.status == 'success' }}
+        run: |
+          echo "working!"
+          
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger
+        if: ${{ job.test1.steps.str.status == 'success' }}
+        id: trg
+        run: |
+          echo "yeah!"
+        shell: bash
+        
