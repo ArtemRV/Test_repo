@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      RequestedStart:
+        type: string
+        description: "The change to be started by this date"
+        default: "yyyy-mm-ddT00:00:00"
+        required: true
+        
+env:
+  STARTTIME: ${{ inputs.RequestedStart }}
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          echo $STARTTIME
+        shell: bash
